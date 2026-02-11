@@ -29,3 +29,6 @@ def filter_high_threat_ips(suspicious_dict):
 
 def get_hour(time_list):
     return list(map(lambda timestamp:datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S").hour,time_list ))
+
+def b_to_kb(size_list):
+    return list(map(lambda byte: byte / 1024,size_list))
