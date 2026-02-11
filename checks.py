@@ -20,7 +20,7 @@ def tag_traffic(line):
 
 def check_night_activity(line):
          time_obj = datetime.strptime(line[0], "%Y-%m-%d %H:%M:%S").time()
-         return  time(0,0)<= time_obj < time(6,0)
+         return NIGHT_START <= time_obj.hour < NIGHT_END
 
 
 
