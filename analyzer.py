@@ -35,3 +35,7 @@ def b_to_kb(size_list):
 
 def filter_by_port(data):
     return list(filter(lambda line: line[3] in SENSITIVE_PORTS,data))
+
+def filter_by_night(data):
+    return list(filter(lambda line: NIGHT_START <= datetime.strptime(line[0], "%Y-%m-%d %H:%M:%S").hour < NIGHT_END, data))
+
