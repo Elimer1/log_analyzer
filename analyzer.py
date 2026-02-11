@@ -32,3 +32,6 @@ def get_hour(time_list):
 
 def b_to_kb(size_list):
     return list(map(lambda byte: byte / 1024,size_list))
+
+def filter_by_port(data):
+    return list(filter(lambda line: line[3] in SENSITIVE_PORTS,data))
