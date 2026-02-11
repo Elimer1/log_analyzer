@@ -1,5 +1,12 @@
 from checks import *
 
+suspicion_checks = {
+    "EXTERNAL_IP": lambda line: check_external_ips(line),
+    "LARGE_PACKET": lambda line: filter_by_size(line),
+    "NIGHT_ACTIVITY": lambda line: check_night_activity(line),
+    "SENSITIVE_PORT": lambda line: filter_by_sensitive_port(line)
+}
+
 def count_ip_occurrences(data):
     ip_list = [line[1] for line in set(data)]
     return {ip:ip_list.count(ip) for ip in ip_list }
