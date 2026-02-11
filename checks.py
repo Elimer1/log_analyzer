@@ -1,23 +1,22 @@
 from datetime import datetime, time
 from config import *
 
-def extract_external_ips(data):
-    return [line[1] for line in data if not (line[1].startswith(INTERNAL_IP) ) ]
+def check_external_ips(line):
+    return not line[1].startswith(INTERNAL_IP)
 
 
-def filter_by_sensitive_port(data):
-    return [line for line in data if line[3] in SENSITIVE_PORTS]
+def filter_by_sensitive_port(line):
+    return line[3] in SENSITIVE_PORTS
 
-def filter_by_size(data):
-    return [line for line in data if int(line[5]) > SIZE]
+def filter_by_size(line):
+    return int(line[5]) > SIZE
 
-def tag_traffic(data):
-    for line in data:
-        if int(line[5]) > SIZE:
+def tag_traffic(line):
+    if int(line[5]) > SIZE:
             line.append("LARGE")
-        else:
+    else:
             line.append("NORMAL")
-    return data
+    return line
 
 def check_night_activity(line):
          time_obj = datetime.strptime(line[0], "%Y-%m-%d %H:%M:%S").time()
