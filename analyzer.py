@@ -46,3 +46,5 @@ def filter_by_port(data):
 def filter_by_night(data):
     return list(filter(lambda line: NIGHT_START <= datetime.strptime(line[0], "%Y-%m-%d %H:%M:%S").hour < NIGHT_END, data))
 
+def inspector(line,lambda_dict):
+    return list(filter(lambda key: lambda_dict[key](line),lambda_dict))
