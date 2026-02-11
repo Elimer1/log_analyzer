@@ -1,8 +1,8 @@
 from checks import *
 
 def count_ip_occurrences(data):
-    ip_list = [line[1] for line in data]
-    return {ip:ip_list.count(ip) for ip in set(ip_list) }
+    ip_list = [line[1] for line in set(data)]
+    return {ip:ip_list.count(ip) for ip in ip_list }
 
 def identify_suspicion_types(data):
     suspicious_dict = {}
@@ -26,3 +26,6 @@ def identify_suspicion_types(data):
 
 def filter_high_threat_ips(suspicious_dict):
     return {ip: suspicious_dict[ip] for ip in suspicious_dict if len(suspicious_dict[ip]) >= 2}
+
+def get_hour(time_list):
+    return list(map(lambda timestamp:datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S").hour,time_list ))
