@@ -48,3 +48,7 @@ def filter_by_night(data):
 
 def inspector(line,lambda_dict):
     return list(filter(lambda key: lambda_dict[key](line),lambda_dict))
+
+def process_all_logs(data):
+    return list(filter(lambda suspicions: len(suspicions) > 0, map(lambda row: inspector(row, suspicion_checks), data)))
+
