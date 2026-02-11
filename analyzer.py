@@ -24,4 +24,5 @@ def identify_suspicion_types(data):
         suspicious_dict[ip] = list(suspicious_dict[ip])
     return suspicious_dict
 
-def filter_high_threat_ips(suspicious_dict)
+def filter_high_threat_ips(suspicious_dict):
+    return {ip: suspicious_dict[ip] for ip in suspicious_dict if len(suspicious_dict[ip]) >= 2}
